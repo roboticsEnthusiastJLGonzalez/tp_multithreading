@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 from time import perf_counter
 
 import numpy as np
