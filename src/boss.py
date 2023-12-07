@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import manager
+import task
 
 
 class Boss(manager.QueueClient):
@@ -17,4 +18,5 @@ class Boss(manager.QueueClient):
 
 if __name__ == "__main__":
     boss = Boss()
-    boss.put_in_queue("hello")
+    task_for_minion = task.Task(0, 3)
+    boss.put_in_queue(task_for_minion)
