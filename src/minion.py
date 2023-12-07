@@ -9,4 +9,13 @@ class Minion(manager.QueueClient):
     """
 
     def __init__(self):
-        pass
+        super().__init__()
+
+    def get_from_queue(self):
+        print(self.task_queue.empty())
+        return self.client.task_queue.get()
+
+
+if __name__ == "__main__":
+    minion = Minion()
+    minion.get_from_queue()
