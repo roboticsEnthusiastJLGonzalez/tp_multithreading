@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import json
 from time import perf_counter
 
 import numpy as np
@@ -23,7 +24,19 @@ class Task:
         self.time = time_end - time_start
         return self.time
 
+    def to_json(self) -> str:
+        class_info = {
+            "size": self.size,
+            "id": self.indentifier,
+            "a": self.a.tolist(),
+            "b": self.b.tolist(),
+            "x": self.x.tolist(),
+            "time": self.time,
+        }
+        return json.dumps(class_info)
+
 
 if __name__ == "__main__":
     ma_tache = Task(0, 3)
-    print(ma_tache.work())
+    print(ma_tache.to_json())
+    # print(ma_tache.work())
