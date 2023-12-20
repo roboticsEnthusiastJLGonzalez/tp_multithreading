@@ -35,8 +35,17 @@ class Task:
         }
         return json.dumps(class_info)
 
+    @classmethod
+    def from_json(cls, task_info_json: str) -> "Task":
+        task_info = json.loads(task_info_json)
+        return Task(task_info.get("id"), task_info.get("size"))
+
 
 if __name__ == "__main__":
     ma_tache = Task(0, 3)
-    print(ma_tache.to_json())
+    # print(ma_tache.to_json())
     # print(ma_tache.work())
+    json_tache = ma_tache.to_json()
+    deuxieme_tache = Task.from_json(json_tache)
+    print(deuxieme_tache.work())
+    print(ma_tache.work())
