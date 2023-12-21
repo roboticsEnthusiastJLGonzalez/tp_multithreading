@@ -20,11 +20,11 @@ Then in a new terminal, run the proxy.
 ```
 python3 proxy.py
 ```
-You can now add tasks to the queue when calling a boss (in a new terminal) : 
+You can now add tasks to the queue when calling a boss (in a new terminal). The boss will add just one task to the queue then the script will end.
 ```
 python3 boss.py
 ```
-When you call minions, they will do all the tasks in the queue:
+When you call minions, they will do all the tasks in the queue and print a message when they are done or when the queue is empty at the moment of their call:
 ```
 python3 minion.py
 ```
