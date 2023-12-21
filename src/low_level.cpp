@@ -50,7 +50,20 @@ public:
         // this->matrixX = this->matrixA.llt().solve(this->matrixB);
 
         // pretty fast and accurate and works!
-        this->matrixX = this->matrixA.householderQr().solve(this->matrixB);
+        // this->matrixX = this->matrixA.householderQr().solve(this->matrixB);
+
+        // this one can use internal multithreading
+        // this->matrixX = this->matrixA.partialPivLu().solve(this->matrixB);
+
+        // pour comparer avec résultats du prof
+        this->matrixX = this->matrixA.lu().solve(this->matrixB);
+        /* RESULTS
+        pour 1 thread : Resolution error : 2.36743e-11
+                        Execution time: 1.66699 seconds
+        pour 2 threads: Resolution error : 2.22848e-10
+                        Execution time: 1.02086 seconds
+        pour 4 threads: Resolution error : 7.64654e-11
+                        Execution time: 0.842575 seconds*/
 
         const auto time_end = std::chrono::high_resolution_clock::now();
         auto time_ellapsed = std::chrono::duration_cast<std::chrono::duration<double>>(time_end - time_start).count();
@@ -65,6 +78,9 @@ public:
 
 int main()
 {
+    // choix du nombre de threads utilisés lors du calcul de eigen
+    Eigen::setNbThreads(4);
+
     // get json text from an http request
     // will wait until a response arrives
     const cpr::Response response = cpr::Get(cpr::Url{"http://localhost:8000/"});
