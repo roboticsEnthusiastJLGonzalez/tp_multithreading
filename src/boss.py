@@ -18,5 +18,5 @@ class Boss(manager.QueueClient):
 
 if __name__ == "__main__":
     boss = Boss()
-    task_for_minion = task.Task(0, 3)
+    task_for_minion = task.Task(0, 3000)
     boss.put_in_queue(task_for_minion)
